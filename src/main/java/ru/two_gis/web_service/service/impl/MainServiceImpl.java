@@ -25,12 +25,16 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<Filial> start(String fieldOfActivity) {
 
-
 		List<Filial> filialsByCity = new CopyOnWriteArrayList<>();
 		List<Thread> threads = new ArrayList<>();
 
 		for (String city : SIBERIAN_DISTRICT) {
-			Thread thread = new Thread(() -> filialsByCity.add(parsingService.getFilialByCity(fieldOfActivity, city)));
+			Thread  thread  = new Thread(() -> {
+				Filial filial = parsingService.getFilialByCity(fieldOfActivity, city);
+				if (filial.getRating() > 0) {
+					filialsByCity.add(filial);
+				}
+			});
 			threads.add(thread);
 			thread.start();
 		}
