@@ -6,5 +6,5 @@ import java.util.List;
 public class Location {
 
 	public final static List<String> SIBERIAN_DISTRICT = Arrays.asList(
-			"Novosibirsk", "Omsk", "Tomsk", "Kemerovo", "Novokuznetsk");
+			"Новосибирск", "Омск", "Томск", "Кемерово", "Новокузнецк");
 }
