@@ -1,4 +1,4 @@
-package ru.two_gis.web_service.service.impl;
+package ru.two.gis.web.service.impl;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,12 +6,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.two_gis.web_service.model.Filial;
-import ru.two_gis.web_service.service.abstr.ParsingService;
+import ru.two.gis.web.service.abstr.TwoGisWorkerService;
+import ru.two.gis.web.model.Filial;
+import ru.two.gis.web.util.UrlConstant;
 
 @Service
 @PropertySource(value = {"classpath:2gis.properties"})
-public class ParsingServiceImpl implements ParsingService {
+class TwoGisWorkerServiceImpl implements TwoGisWorkerService {
 
 	@Autowired
 	private Environment environment;
@@ -47,48 +48,46 @@ public class ParsingServiceImpl implements ParsingService {
 		return getFilialById(getIdFilialByCity(fieldOfActivity, city));
 	}
 
-
 	private String getUrlSearch(String fieldOfActivity, String city) {
 
-		StringBuilder customUrl = new StringBuilder();
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.search"));
+		StringBuilder urlSearch = new StringBuilder();
+		urlSearch.append(UrlConstant.SEARCH);
 
-		customUrl.append("&what=");
-		customUrl.append(fieldOfActivity);
+		urlSearch.append("&what=");
+		urlSearch.append(fieldOfActivity);
 
-		customUrl.append("&where=");
-		customUrl.append(city);
+		urlSearch.append("&where=");
+		urlSearch.append(city);
 
-		customUrl.append("&version=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.version"));
+		urlSearch.append("&version=");
+		urlSearch.append(environment.getRequiredProperty("2gis.parameter.version"));
 
-		customUrl.append("&key=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.key"));
+		urlSearch.append("&key=");
+		urlSearch.append(environment.getRequiredProperty("2gis.parameter.key"));
 
-		customUrl.append("&sort=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.sort"));
+		urlSearch.append("&sort=");
+		urlSearch.append(environment.getRequiredProperty("2gis.parameter.sort"));
 
-		customUrl.append("&pagesize=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.pagesize"));
+		urlSearch.append("&pagesize=");
+		urlSearch.append(environment.getRequiredProperty("2gis.parameter.pagesize"));
 
-		return customUrl.toString();
+		return urlSearch.toString();
 	}
 
 	private String getUrlProfile(Long id) {
 
-		StringBuilder customUrl = new StringBuilder();
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.profile"));
+		StringBuilder urlProfile = new StringBuilder();
+		urlProfile.append(UrlConstant.PROFILE);
 
-		customUrl.append("&id=");
-		customUrl.append(id);
+		urlProfile.append("&id=");
+		urlProfile.append(id);
 
-		customUrl.append("&version=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.version"));
+		urlProfile.append("&version=");
+		urlProfile.append(environment.getRequiredProperty("2gis.parameter.version"));
 
-		customUrl.append("&key=");
-		customUrl.append(environment.getRequiredProperty("2gis.parameter.key"));
+		urlProfile.append("&key=");
+		urlProfile.append(environment.getRequiredProperty("2gis.parameter.key"));
 
-		return customUrl.toString();
+		return urlProfile.toString();
 	}
-
 }

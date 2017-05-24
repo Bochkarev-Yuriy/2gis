@@ -1,14 +1,12 @@
-package ru.two_gis.web_service.service.abstr;
+package ru.two.gis.web.service.abstr;
 
-import ru.two_gis.web_service.model.Filial;
+import ru.two.gis.web.model.Filial;
 
-
-public interface ParsingService {
+public interface TwoGisWorkerService {
 
 	Long getIdFilialByCity(String fieldOfActivity, String city);
 
 	Filial getFilialById(Long idFilial);
 
 	Filial getFilialByCity(String fieldOfActivity, String city);
-
 }

@@ -1,5 +1,4 @@
-package ru.two_gis.web_service.model;
-
+package ru.two.gis.web.model;
 
 public class Filial {
 
@@ -9,7 +8,6 @@ public class Filial {
 
 	private Double rating;
 
-
 	public Filial() {
 	}
 
@@ -18,7 +16,6 @@ public class Filial {
 		this.address = address;
 		this.rating = rating;
 	}
-
 
 	public String getName() {
 		return name;

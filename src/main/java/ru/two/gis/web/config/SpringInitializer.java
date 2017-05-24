@@ -1,9 +1,9 @@
-package ru.two_gis.web_service.config;
-
+package ru.two.gis.web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[]{AppConfig.class};
 	}
